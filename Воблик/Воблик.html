@@ -1,0 +1,738 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Shihami — NFT Landing</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;500;600;700&family=Poppins:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#05040a;
+      --panel:rgba(255,255,255,.06);
+      --text:#ffffff;
+      --muted:rgba(255,255,255,.72);
+      --line:rgba(255,255,255,.12);
+      --grad:linear-gradient(90deg,#ffffff 0%, #f81dfb 55%, #00e5ff 100%);
+      --grad2:linear-gradient(90deg,#8a2be2 0%, #00bfff 100%);
+      --shadow: 0 20px 60px rgba(0,0,0,.45);
+      --r:22px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      color:var(--text);
+      background:
+        radial-gradient(900px 500px at 20% 10%, rgba(248,29,251,.22), transparent 60%),
+        radial-gradient(900px 500px at 80% 15%, rgba(0,229,255,.18), transparent 60%),
+        radial-gradient(1000px 600px at 50% 110%, rgba(138,43,226,.16), transparent 60%),
+        var(--bg);
+      font-family:Poppins, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      overflow-x:hidden;
+    }
+
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+
+    .container{width:min(1180px, 92vw); margin:0 auto}
+
+    /* NAV */
+    .nav{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(5,4,10,.55);
+      border-bottom:1px solid var(--line);
+    }
+    .nav__inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:16px 0;
+      gap:16px;
+    }
+    .brand{display:flex; align-items:center; gap:12px; min-width:210px}
+    .brand img{width:34px; height:34px}
+    .brand strong{font-family:Oxanium, sans-serif; letter-spacing:.4px}
+    .menu{display:flex; gap:18px; align-items:center; flex-wrap:wrap; justify-content:center}
+    .menu a{
+      font-family:Oxanium, sans-serif;
+      font-size:13px; letter-spacing:.12em;
+      text-transform:uppercase;
+      opacity:.9;
+      padding:10px 10px;
+      border-radius:999px;
+    }
+    .menu a:hover{background:rgba(255,255,255,.06)}
+    .cta{
+      display:flex; gap:10px; align-items:center; justify-content:flex-end;
+      min-width:210px;
+    }
+    .btn{
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.04);
+      color:#fff;
+      padding:10px 14px;
+      border-radius:999px;
+      font-size:13px;
+      cursor:pointer;
+      display:inline-flex; align-items:center; gap:10px;
+      transition:transform .15s ease, border-color .15s ease, filter .15s ease;
+      user-select:none;
+    }
+    .btn:hover{transform:translateY(-1px); border-color:rgba(255,255,255,.28)}
+    .btn:focus-visible{
+      outline:2px solid rgba(0,229,255,.55);
+      outline-offset:3px;
+    }
+    .btn--primary{
+      border:none;
+      background:var(--grad2);
+      box-shadow:0 10px 30px rgba(0,191,255,.12);
+    }
+
+    /* HERO */
+    .hero{padding:56px 0 26px}
+    .hero__grid{
+      display:grid;
+      grid-template-columns: 1.25fr .95fr;
+      gap:30px;
+      align-items:center;
+    }
+    .kicker{
+      font-family:Oxanium, sans-serif;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      font-weight:600;
+      font-size:14px;
+      margin:0 0 12px;
+      background:var(--grad);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+    .hero h1{
+      font-family:Oxanium, sans-serif;
+      font-size:48px;
+      line-height:1.05;
+      margin:0 0 14px;
+    }
+    .hero p{margin:0 0 22px; color:var(--muted); max-width:52ch}
+    .hero__actions{display:flex; gap:12px; flex-wrap:wrap}
+
+    .hero__art{
+      position:relative;
+      height:420px;
+      border-radius:var(--r);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .hero__art::before{
+      content:"";
+      position:absolute; inset:-80px;
+      background:
+        radial-gradient(300px 220px at 70% 30%, rgba(248,29,251,.22), transparent 60%),
+        radial-gradient(320px 240px at 30% 70%, rgba(0,229,255,.18), transparent 60%);
+      filter: blur(20px);
+      opacity:.9;
+    }
+    .stack3{
+      position:absolute; inset:0;
+      display:flex; align-items:center; justify-content:center;
+    }
+    .card3{
+      position:absolute;
+      width:62%;
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.25);
+      box-shadow: 0 18px 55px rgba(0,0,0,.45);
+      transform-origin:center;
+    }
+    .card3 img{width:100%; height:auto}
+    .card3--a{transform: translate(-30%, 6%) rotate(-9deg); opacity:.95}
+    .card3--b{transform: translate(0%, -4%) rotate(2deg); opacity:1}
+    .card3--c{transform: translate(30%, 10%) rotate(9deg); opacity:.95}
+    .priceTag{
+      position:absolute;
+      left:16px; right:16px; bottom:14px;
+      display:flex; justify-content:space-between; gap:10px; align-items:center;
+      padding:10px 12px;
+      border-radius:14px;
+      background: rgba(0,0,0,.45);
+      border: 1px solid rgba(255,255,255,.14);
+      backdrop-filter: blur(8px);
+      font-size:12px;
+    }
+    .priceTag b{font-family:Oxanium, sans-serif; font-size:13px}
+    .dot{width:8px; height:8px; border-radius:99px; background: #00e5ff; box-shadow:0 0 0 6px rgba(0,229,255,.12)}
+
+    /* SECTIONS */
+    .section{padding:56px 0}
+    .title{
+      font-family:Oxanium, sans-serif;
+      font-size:44px;
+      text-align:center;
+      margin:0 0 14px;
+    }
+    .subtitle{
+      text-align:center;
+      margin:0 auto 28px;
+      color:var(--muted);
+      max-width:72ch;
+    }
+    .gradText{
+      background:var(--grad);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+
+    /* WALLET SUPPORT */
+    .walletRow{
+      display:flex; gap:14px; flex-wrap:wrap; justify-content:center;
+    }
+    .wallet{
+      width:170px;
+      border-radius:18px;
+      background:var(--panel);
+      border:1px solid var(--line);
+      padding:14px 14px;
+      display:flex; align-items:center; gap:12px;
+    }
+    .wallet img{width:34px; height:34px}
+    .wallet span{font-size:14px}
+
+    /* HOW IT WORKS */
+    .grid4{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap:14px;
+    }
+    .step{
+      border-radius:18px;
+      background:var(--panel);
+      border:1px solid var(--line);
+      padding:18px;
+      min-height:140px;
+    }
+    .step .num{
+      font-family:Oxanium, sans-serif;
+      font-weight:700;
+      font-size:12px;
+      letter-spacing:.18em;
+      opacity:.8;
+    }
+    .step h3{
+      margin:10px 0 0;
+      font-family:Oxanium, sans-serif;
+      font-size:18px;
+    }
+    .step p{margin:10px 0 0; color:var(--muted); font-size:13px; line-height:1.5}
+
+    /* NFT GRID */
+    .grid3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+    }
+    .nft{
+      border-radius:18px;
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      overflow:hidden;
+      position:relative;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, filter .18s ease;
+      will-change: transform;
+    }
+
+    /* glow слой */
+    .nft::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      border-radius:18px;
+      background:
+        radial-gradient(220px 160px at 30% 15%, rgba(248,29,251,.26), transparent 60%),
+        radial-gradient(220px 160px at 75% 80%, rgba(0,229,255,.20), transparent 60%);
+      opacity:0;
+      transition: opacity .18s ease;
+      pointer-events:none;
+    }
+
+    .nft:hover{
+      transform: translateY(-6px);
+      border-color: rgba(255,255,255,.24);
+      box-shadow: 0 26px 70px rgba(0,0,0,.55);
+    }
+    .nft:hover::before{opacity:1}
+
+    /* картинка + умное кадрирование */
+    .nft__img{
+      height:190px;
+      border-bottom:1px solid var(--line);
+      overflow:hidden;
+      background: rgba(255,255,255,.03);
+      position:relative;
+    }
+    .nft__img img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center;
+      display:block;
+      transform: scale(1);
+      transition: transform .25s ease, filter .25s ease;
+      filter: saturate(1.05) contrast(1.03);
+    }
+    .nft:hover .nft__img img{
+      transform: scale(1.08);
+      filter: saturate(1.18) contrast(1.08);
+    }
+
+    .nft__body{padding:14px; position:relative; z-index:1}
+    .nft__body b{font-family:Oxanium, sans-serif}
+    .meta{display:flex; justify-content:space-between; gap:10px; margin-top:10px; color:var(--muted); font-size:12px}
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(0,0,0,.18);
+      font-size:12px;
+      margin-top:12px;
+    }
+
+    /* INFLUENCERS */
+    .influ{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:16px; padding:16px;
+      border-radius:18px;
+      background:var(--panel);
+      border:1px solid var(--line);
+    }
+    .influ .left{display:flex; gap:12px; align-items:center}
+    .avatar{
+      width:44px; height:44px; border-radius:999px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.10);
+      flex:0 0 auto;
+    }
+    .avatar img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center;
+      display:block;
+      transform: scale(1.05);
+    }
+
+    /* NFT DROP */
+    .drop{
+      border-radius:var(--r);
+      border:1px solid var(--line);
+      background:
+        radial-gradient(400px 240px at 20% 50%, rgba(248,29,251,.18), transparent 65%),
+        radial-gradient(420px 260px at 80% 50%, rgba(0,229,255,.16), transparent 65%),
+        rgba(255,255,255,.04);
+      padding:26px;
+      display:flex; align-items:center; justify-content:space-between; gap:16px;
+    }
+    .drop h3{
+      margin:0;
+      font-family:Oxanium, sans-serif;
+      font-size:28px;
+    }
+    .drop form{display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end}
+    .inp{
+      min-width:240px;
+      padding:12px 14px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(0,0,0,.22);
+      color:#fff;
+      outline:none;
+    }
+    .inp::placeholder{color:rgba(255,255,255,.55)}
+    .inp:focus{
+      border-color: rgba(0,229,255,.45);
+      box-shadow: 0 0 0 4px rgba(0,229,255,.12);
+    }
+
+    /* FOOTER */
+    footer{
+      margin-top:30px;
+      border-top:1px solid var(--line);
+      padding:28px 0 40px;
+      color:rgba(255,255,255,.72);
+    }
+    .foot{
+      display:grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap:14px;
+      align-items:start;
+    }
+    .foot h4{margin:0 0 10px; color:#fff; font-family:Oxanium, sans-serif}
+    .foot a{display:block; padding:6px 0; opacity:.85}
+    .foot a:hover{opacity:1}
+    .copy{margin-top:18px; font-size:12px; opacity:.8}
+
+    /* RESPONSIVE */
+    @media (max-width: 980px){
+      .hero__grid{grid-template-columns:1fr}
+      .cta{min-width:auto}
+      .brand{min-width:auto}
+      .grid4{grid-template-columns: repeat(2, 1fr)}
+      .grid3{grid-template-columns: repeat(2, 1fr)}
+      .hero__art{height:380px}
+    }
+    @media (max-width: 560px){
+      .menu{display:none}
+      .hero h1{font-size:38px}
+      .title{font-size:36px}
+      .grid4,.grid3{grid-template-columns:1fr}
+      .drop{flex-direction:column; align-items:flex-start}
+      .drop form{width:100%; justify-content:flex-start}
+      .inp{width:100%; min-width:0}
+    }
+  </style>
+</head>
+
+<body>
+  <!-- NAV -->
+  <div class="nav">
+    <div class="container nav__inner">
+      <a class="brand" href="#top">
+        <img src="images/logo.png" alt="logo">
+        <strong>Shihami</strong>
+      </a>
+
+      <div class="menu">
+        <a href="#explore">Explore</a>
+        <a href="#trending">Trending NFTs</a>
+        <a href="#auction">Auctioned NFTs</a>
+        <a href="#influencers">Influencers</a>
+      </div>
+
+      <div class="cta">
+        <a class="btn" href="#drop">Sign up</a>
+        <button class="btn btn--primary" type="button" onclick="fakeConnect()">Connect Wallet</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div id="top" class="hero">
+    <div class="container hero__grid">
+      <div>
+        <p class="kicker">EXPLORE, CREATE AND SELL YOUR NFT’S ON SHIHAMI</p>
+        <h1>World’s first & largest<br/>NFT / Avatar marketplace</h1>
+        <p>Shihami is the World’s first and largest NFT/Avatar marketplace.</p>
+
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#explore">Explore</a>
+          <a class="btn" href="#drop">Create NFT</a>
+        </div>
+      </div>
+
+      <div class="hero__art" aria-label="Hero art">
+        <div class="stack3">
+          <div class="card3 card3--a">
+            <img src="images/hero1.png" alt="NFT 1">
+          </div>
+          <div class="card3 card3--b">
+            <img src="images/hero2.png" alt="NFT 2">
+            <div class="priceTag">
+              <span style="display:flex;align-items:center;gap:10px;"><span class="dot"></span><b>Living of the art</b></span>
+              <span>$ 543,576.13</span>
+            </div>
+          </div>
+          <div class="card3 card3--c">
+            <img src="images/hero3.png" alt="NFT 3">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WALLET SUPPORT -->
+  <section class="section">
+    <div class="container">
+      <h2 class="title"><span class="gradText">Trade</span> with world’s most trusted and fastest wallets</h2>
+      <p class="subtitle">wallets we support</p>
+
+      <div class="walletRow">
+        <div class="wallet"><img src="images/walletSupport1.png" alt="Metamask"><span>Metamask</span></div>
+        <div class="wallet"><img src="images/walletSupport2.png" alt="Binance"><span>Binance</span></div>
+        <div class="wallet"><img src="images/walletSupport3.png" alt="Coinbase"><span>Coinbase</span></div>
+        <div class="wallet"><img src="images/walletSupport4.png" alt="Trust Wallet"><span>Trust Wallet</span></div>
+        <div class="wallet"><img src="images/walletSupport5.png" alt="Phantom"><span>Phantom</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section">
+    <div class="container">
+      <h2 class="title">How it works</h2>
+      <p class="subtitle">Start collecting in minutes — simple steps, clean UX, and marketplace-ready listings.</p>
+
+      <div class="grid4">
+        <div class="step">
+          <div class="num">STEP 01</div>
+          <h3>Set up your wallet</h3>
+          <p>Connect a supported wallet and you’re ready to explore collections.</p>
+        </div>
+        <div class="step">
+          <div class="num">STEP 02</div>
+          <h3>Create your collection</h3>
+          <p>Add basic info, banner and social links to your profile.</p>
+        </div>
+        <div class="step">
+          <div class="num">STEP 03</div>
+          <h3>Add your NFTs</h3>
+          <p>Upload, name and describe your NFT — set properties and supply.</p>
+        </div>
+        <div class="step">
+          <div class="num">STEP 04</div>
+          <h3>List them for sale</h3>
+          <p>Choose fixed price or auction — publish and share.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR COLLECTION -->
+  <section id="explore" class="section">
+    <div class="container">
+      <h2 class="title">Our collection</h2>
+      <p class="subtitle">Explore our newly released NFT collection</p>
+
+      <div class="grid3">
+        <article class="nft">
+          <div class="nft__img"><img src="images/nft1.jpg" alt="Bleeding Ghost"></div>
+          <div class="nft__body">
+            <b>Bleeding Ghost</b>
+            <div class="meta"><span>@artist</span><span>$ 152,793.17</span></div>
+            <span class="chip">On Sale</span>
+          </div>
+        </article>
+
+        <article class="nft">
+          <div class="nft__img"><img src="images/nft2.jpg" alt="Living of the Art"></div>
+          <div class="nft__body">
+            <b>Living of the Art</b>
+            <div class="meta"><span>@artist</span><span>$ 543,576.13</span></div>
+            <span class="chip">On Sale</span>
+          </div>
+        </article>
+
+        <article class="nft">
+          <div class="nft__img"><img src="images/nft3.jpg" alt="Statue of Vughae"></div>
+          <div class="nft__body">
+            <b>Statue of Vughae</b>
+            <div class="meta"><span>@artist</span><span>$ 452,968.48</span></div>
+            <span class="chip">On Sale</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRENDING -->
+  <section id="trending" class="section">
+    <div class="container">
+      <h2 class="title">hot trending nFTs</h2>
+      <p class="subtitle">most loved NFTs of the time</p>
+
+      <div class="grid3">
+        <article class="nft">
+          <div class="nft__img"><img src="images/nft4.jpg" alt="Trending 1"></div>
+          <div class="nft__body">
+            <b>Trending #1</b>
+            <div class="meta"><span>@user</span><span>($ 1,250)</span></div>
+            <span class="chip">On Sale</span>
+          </div>
+        </article>
+
+        <article class="nft">
+          <div class="nft__img"><img src="images/nft5.jpg" alt="Trending 2"></div>
+          <div class="nft__body">
+            <b>Trending #2</b>
+            <div class="meta"><span>@user</span><span>($ 980)</span></div>
+            <span class="chip">On Sale</span>
+          </div>
+        </article>
+
+        <article class="nft">
+          <div class="nft__img"><img src="images/nft6.jpg" alt="Trending 3"></div>
+          <div class="nft__body">
+            <b>Trending #3</b>
+            <div class="meta"><span>@user</span><span>($ 2,100)</span></div>
+            <span class="chip">On Sale</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUCTION -->
+  <section id="auction" class="section">
+    <div class="container">
+      <h2 class="title">Live Auction nFTs</h2>
+      <p class="subtitle">Most Appreciated NFTs On Sale For the day</p>
+
+      <div class="grid3">
+        <article class="nft">
+          <div class="nft__img"><img src="images/nft7.jpg" alt="Auction 1"></div>
+          <div class="nft__body">
+            <b>Auction #1</b>
+            <div class="meta"><span>@user</span><span>($ 3,200)</span></div>
+            <span class="chip">Bid now</span>
+          </div>
+        </article>
+
+        <article class="nft">
+          <div class="nft__img"><img src="images/nft8.jpg" alt="Auction 2"></div>
+          <div class="nft__body">
+            <b>Auction #2</b>
+            <div class="meta"><span>@user</span><span>($ 5,450)</span></div>
+            <span class="chip">Bid now</span>
+          </div>
+        </article>
+
+        <article class="nft">
+          <div class="nft__img"><img src="images/nft9.jpg" alt="Auction 3"></div>
+          <div class="nft__body">
+            <b>Auction #3</b>
+            <div class="meta"><span>@user</span><span>($ 1,890)</span></div>
+            <span class="chip">Bid now</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFLUENCERS (3 аватара добавлены) -->
+  <section id="influencers" class="section">
+    <div class="container">
+      <h2 class="title">joined influencers</h2>
+      <p class="subtitle">Watch and follow celebrities to get the best collection of NFTs</p>
+
+      <div class="grid3">
+        <div class="influ">
+          <div class="left">
+            <div class="avatar"><img src="images/avatar1.jpg" alt="Influencer 1"></div>
+            <div>
+              <b style="font-family:Oxanium">Influencer 1</b>
+              <div style="color:var(--muted);font-size:12px;">@influencer</div>
+            </div>
+          </div>
+          <button class="btn" type="button">Follow</button>
+        </div>
+
+        <div class="influ">
+          <div class="left">
+            <div class="avatar"><img src="images/avatar2.jpg" alt="Influencer 2"></div>
+            <div>
+              <b style="font-family:Oxanium">Influencer 2</b>
+              <div style="color:var(--muted);font-size:12px;">@influencer</div>
+            </div>
+          </div>
+          <button class="btn" type="button">Follow</button>
+        </div>
+
+        <div class="influ">
+          <div class="left">
+            <div class="avatar"><img src="images/avatar3.jpg" alt="Influencer 3"></div>
+            <div>
+              <b style="font-family:Oxanium">Influencer 3</b>
+              <div style="color:var(--muted);font-size:12px;">@influencer</div>
+            </div>
+          </div>
+          <button class="btn" type="button">Follow</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NFT DROP -->
+  <section id="drop" class="section">
+    <div class="container">
+      <div class="drop">
+        <div>
+          <h3>Ready for Next NFT Drop?</h3>
+          <p style="margin:8px 0 0; color: var(--muted);">Get updates about new drops, auctions and trending collections.</p>
+        </div>
+
+        <form onsubmit="return subscribe(event)">
+          <input class="inp" type="email" id="email" placeholder="Enter your email" required>
+          <button class="btn btn--primary" type="submit">Notify me</button>
+        </form>
+      </div>
+
+      <div id="toast" style="display:none;margin-top:12px;color:var(--muted);font-size:13px;"></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="foot">
+        <div>
+          <h4>Shihami</h4>
+          <div style="max-width:44ch; line-height:1.6;">
+            NFT marketplace landing (static version). Replace cards with your real data and images anytime.
+          </div>
+        </div>
+
+        <div>
+          <h4>About</h4>
+          <a href="#explore">Explore</a>
+          <a href="#trending">Trending</a>
+          <a href="#auction">Auctions</a>
+          <a href="#influencers">Influencers</a>
+        </div>
+
+        <div>
+          <h4>Support</h4>
+          <a href="#drop">Newsletter</a>
+          <a href="#top">Back to top</a>
+        </div>
+      </div>
+
+      <div class="copy">© <span id="year"></span> Shihami. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    function fakeConnect(){
+      showToast("Wallet connect is demo-only (static HTML).");
+    }
+
+    function subscribe(e){
+      e.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      showToast("Subscribed: " + email);
+      document.getElementById('email').value = "";
+      return false;
+    }
+
+    function showToast(msg){
+      const el = document.getElementById('toast');
+      el.style.display = 'block';
+      el.textContent = msg;
+      clearTimeout(window.__t);
+      window.__t = setTimeout(()=>{ el.style.display='none'; }, 3500);
+    }
+  </script>
+</body>
+</html>
